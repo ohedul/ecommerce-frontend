@@ -1,0 +1,22 @@
+.cart-item-name-price-container{
+    max-height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.cart-item-name{
+    width: 40%;
+    word-break: break-all;
+}
+.cart-item-price{
+    width: 15%;
+}
+.cart-item-button{
+   width: 15%;
+   align-self: center;
+}
+.increment-decrement{
+    height: 40px;
+    width: 100%;
+    background-color: transparent;
+}

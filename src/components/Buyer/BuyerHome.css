@@ -1,0 +1,10 @@
+.buyer-home-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.item-container {
+    border-right: 1px solid lightgray;
+    margin-right: 8px;
+    margin-left: 100px;
+}

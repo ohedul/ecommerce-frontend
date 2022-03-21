@@ -1,0 +1,28 @@
+.admin-header {
+    text-align: center;
+}
+
+.admin-nav {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.admin-left {
+    display: flex;
+    margin-left: 10px;
+}
+
+.admin-left button {
+    padding: 10px;
+    margin: 5px;
+}
+.admin-right{
+    margin: 10px 5px 5px 5px;
+    background-color: transparent;
+}
+.admin-action-button{
+    background-color: white;
+    border: none;
+}
