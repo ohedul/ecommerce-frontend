@@ -3,7 +3,6 @@ import "./BuyerCart.css";
 
 const ItemCart =(props) => {
     const item = props.itemCart;
-    console.log(item);
     return(
         <div className='cart-item-name-price-container'>
         <div className='cart-item-button'>

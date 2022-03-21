@@ -61,24 +61,29 @@ class BuyerHome extends Component{
     }
 
      async handleOrder(){
-        const cartDto = this.state.cart.map((cart)=>{
-            let items = {
-                "itemId": cart.itemId,
-                "quantity": cart.quantity
-            }
-            return items;
-        });
-        const formData  = new FormData();
-        formData.append('cartDto', cartDto);
-        formData.append('id', this.state.user.userId);
-
+        const cartDto = [];
+        for(var i=0; i<this.state.cart.length; i++){
+            const val = this.state.cart[i];
+            let arr = [
+                val.itemId,
+                val.quantity
+            ];
+            cartDto.push(arr);
+        }
+        const customerId = this.state.user.userId;
         const requestBody = {
             method:  'POST',
-            body: formData
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(cartDto)
           };
-       await  fetch('/cart/add',requestBody)
+       await  fetch('/cart/add/'+customerId,requestBody)
             .then(res=> res.json())
-            .then(data =>console.log(data))
+            .then(data =>this.setState({
+                cart: []
+            }))
             .catch(error=> console.log(error));
     }
     render(){

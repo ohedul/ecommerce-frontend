@@ -4,10 +4,8 @@ import MyOrderRow from './MyOrderRow';
 
 const MyOrder = (props)=>{
     const [orders, setOrders] = useState([]);
-    const {user} = props.user;
     useEffect(()=>{
-        console.log(props.user);
-        fetch("/cart/customer/")
+        fetch("/cart/customer/"+ props.user.userId)
         .then(res => res.json())
         .then(data =>setOrders(data));
     },[]);

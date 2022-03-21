@@ -4,7 +4,6 @@ const MyOrderRow = (props) => {
     return (
         <tr>
             <td>{props.order.orderId}</td>
-            <td>{props.order.buyerEmail}</td>
             <td>{props.order.totalamount}</td>
             <td>
                 <button onClick={()=>props.handleView(props.order)}>View</button>
