@@ -6,7 +6,8 @@ const MyOrder = (props)=>{
     const [orders, setOrders] = useState([]);
     const {user} = props.user;
     useEffect(()=>{
-        fetch("/cart/customer/"+ user.userId)
+        console.log(props.user);
+        fetch("/cart/customer/")
         .then(res => res.json())
         .then(data =>setOrders(data));
     },[]);

@@ -6,7 +6,7 @@ const ItemCard = (props)=>{
     return (
         <div className="item">
             <div className="img-div">
-                <img src={`${process.env.REACT_APP_API_KEY + '/image/'+ imageName}`} alt="" />
+                <img className='img-product' src={`${process.env.REACT_APP_API_KEY + '/image/'+ imageName}`} alt="" />
             </div>
             <div className="item-details">
                 <h3 className="item-name">{name}</h3>

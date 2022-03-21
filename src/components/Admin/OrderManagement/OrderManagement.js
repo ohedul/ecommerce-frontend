@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import OrderDetailsView from './OrderDetailsView';
 import "./OrderManagement.css";
 import OrderRow from './OrderRow';
 

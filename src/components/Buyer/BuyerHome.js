@@ -26,23 +26,15 @@ class BuyerHome extends Component{
     }
 
     handleAddToCart = (item) =>{
-        const checkAlreadyAdded = this.state.cart.find(addedProduct => item.itemId === addedProduct.item.itemId);
+        const checkAlreadyAdded = this.state.cart.find(addedProduct => item.itemId === addedProduct.itemId);
         if(!checkAlreadyAdded){
-            const price =  item.price;
-            const orderDetails= {
-                item: item,
-                quantity : 1,
-                subTotal: price
-            };
-            const newCart = [...this.state.cart, orderDetails];
+           item["quantity"] = 1;
+            const newCart = [...this.state.cart, item];
             this.setState({
                 cart: newCart
             });
         } else {
-            const quantity = checkAlreadyAdded.quantity +1;
-            const price =  item.price;
-            checkAlreadyAdded["quantity"] = quantity;
-            checkAlreadyAdded["subTotal"] = quantity*price;
+            checkAlreadyAdded["quantity"] += 1;
             const updatedCart = [...this.state.cart];
             this.setState({
                 cart: updatedCart
@@ -51,44 +43,36 @@ class BuyerHome extends Component{
     }
 
     handleIncrement = (item) =>{
-        const addedItem = this.state.cart.find(addedItem => item.itemId === addedItem.item.itemId);
-        console.log("increment");
-        const quantity = addedItem["quantity"] +1;
-        addedItem["quantity"] = quantity;
-        addedItem["subTotal"] = quantity*item.price;
+        const addedItem = this.state.cart.find(addedItem => item.itemId === addedItem.itemId);
+        addedItem["quantity"] += 1;
         const updatedCart = [...this.state.cart];
         this.setState({
             cart: updatedCart
         });
-        console.log(item);
     }
 
     handleDrecrement = (item) =>{
-        const addedItem = this.state.cart.find(addedItem => item.itemId === addedItem.item.itemId);
-        console.log("decrement");
-        const quantity = addedItem["quantity"] -1;
-        addedItem["quantity"] = quantity;
-        addedItem["subTotal"] = quantity*item.price;
+        const addedItem = this.state.cart.find(addedItem => item.itemId === addedItem.itemId);
+        addedItem["quantity"] -= 1;
         const updatedCart = [...this.state.cart];
         this.setState({
             cart: updatedCart
         });
-        console.log(item);
     }
 
      async handleOrder(){
-        const itemIds = this.state.cart.map((cart)=>{
+        const cartDto = this.state.cart.map((cart)=>{
             let items = {
-                itemId: cart.item.itemId,
-                quantity: cart.quantity
+                "itemId": cart.itemId,
+                "quantity": cart.quantity
             }
             return items;
         });
+
         const requestBody = {
             method:  'POST',
-            body: JSON.stringify(itemIds)
+            body: JSON.stringify(cartDto)
           };
-          console.log(itemIds);
        await  fetch('/cart/add/'+this.state.user.userId,requestBody)
             .then(res=> res.json())
             .then(data =>console.log(data))
