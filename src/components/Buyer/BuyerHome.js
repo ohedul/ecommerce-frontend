@@ -68,12 +68,15 @@ class BuyerHome extends Component{
             }
             return items;
         });
+        const formData  = new FormData();
+        formData.append('cartDto', cartDto);
+        formData.append('id', this.state.user.userId);
 
         const requestBody = {
             method:  'POST',
-            body: JSON.stringify(cartDto)
+            body: formData
           };
-       await  fetch('/cart/add/'+this.state.user.userId,requestBody)
+       await  fetch('/cart/add',requestBody)
             .then(res=> res.json())
             .then(data =>console.log(data))
             .catch(error=> console.log(error));
@@ -81,7 +84,6 @@ class BuyerHome extends Component{
     render(){
         return(
             <div className="buyer-home-container">
-                {console.log(this.state.user)}
             <div className="item-container">
                 {
                     this.state.items.map(item => <ItemCard key={item.itemId} item={item} handleAddToCart={this.handleAddToCart}/>)
